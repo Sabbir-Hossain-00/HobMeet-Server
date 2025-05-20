@@ -57,6 +57,20 @@ async function run () {
       });
 
 
+      app.put("/group/:id", async(req ,res)=>{
+        const id = req.params.id ;
+        const filter = {_id : new ObjectId(id)}
+        const newGrpData = req.body ;
+        const options = { upsert: true };
+        const updateDoc = {
+          $set : newGrpData 
+        }
+        const result = await groupCollection.updateOne(filter , updateDoc , options );
+        res.send(result);
+
+      })
+
+
       app.delete("/group/:id", async(req , res)=>{
         const id = req.params.id ;
         const query = {_id : new ObjectId(id)}
