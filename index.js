@@ -32,6 +32,24 @@ async function run () {
     try{
 
 
+      const database = client.db("hobmeetData");
+      const groupCollection = database.collection("groupCollection");
+
+
+      app.get("/groups", async(req , res)=>{
+        const cursor = groupCollection.find() || {} ;
+        const result = await cursor.toArray();
+        res.send(result);
+      });
+      
+
+      app.post("/groups", async(req , res)=>{
+        const groupData = req.body ;
+        const result = await groupCollection.insertOne(groupData);
+        res.send(result);
+      });
+
+
 
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
