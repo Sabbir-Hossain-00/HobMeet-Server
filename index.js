@@ -47,6 +47,13 @@ async function run () {
         const query = {_id : new ObjectId(id)}
         const result = await groupCollection.findOne(query);
         res.send(result);
+      });
+
+      app.get("/myGroups/:email", async(req , res)=>{
+        const email = req.params.email ;
+        const query = {email : email}
+        const result = await groupCollection.find(query).toArray();
+        res.send(result);
       })
 
 
