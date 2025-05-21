@@ -54,6 +54,14 @@ async function run () {
         const query = {email : email}
         const result = await groupCollection.find(query).toArray();
         res.send(result);
+      });
+
+      app.get("/ongoingGroups" , async(req , res)=>{
+        const today =  new Date().toISOString().split('T')[0]; 
+        const query = {date: {$gt : today}}
+        const result = await groupCollection.find(query).toArray();
+        res.send(result)
+        
       })
 
 
