@@ -59,7 +59,7 @@ async function run () {
       app.get("/ongoingGroups" , async(req , res)=>{
         const today =  new Date().toISOString().split('T')[0]; 
         const query = {date: {$gt : today}}
-        const result = await groupCollection.find(query).toArray();
+        const result = await groupCollection.find(query).limit(6).toArray();
         res.send(result)
         
       })
