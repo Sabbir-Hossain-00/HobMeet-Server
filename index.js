@@ -12,9 +12,6 @@ app.use(express.json());
 
 
 
-// user: hobmeetData
-// pass: 7H4CJI2ji555q5Ex
-
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.vlrcl7k.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
